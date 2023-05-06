@@ -5,7 +5,7 @@ using namespace std;
 
 bool visit[8][8];
 int board[8][8];
-int n, m;
+int n, m, re = 0;
 
 int dr[4] = { -1, 0, 1, 0 };
 int dc[4] = { 0, 1, 0, -1 };
@@ -41,14 +41,12 @@ void bfs() {
 			visit[rr][cc] = 1;
 		}
 	}
-}
 
-int count() {
 	int cnt = 0;
-	for (int i = 0; i < n; i++) 
-		for (int j = 0; j < m; j++) 
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
 			if (!visit[i][j]) cnt++;
-	return cnt;
+	re = max(re, cnt);
 }
 
 int main() {
@@ -58,24 +56,28 @@ int main() {
 			cin >> board[i][j];
 	
 	int v1r, v1c, v2r, v2c, v3r, v3c;
-	int re = 0;
 	for (int i = 0; i < n * m; i++) {
 		v1r = i / m;
 		v1c = i % m;
+
 		if (board[v1r][v1c]) continue;
 		board[v1r][v1c] = 1;
+
 		for (int j = i + 1; j < n * m; j++) {
 			v2r = j / m;
 			v2c = j % m;
+
 			if (board[v2r][v2c]) continue;
 			board[v2r][v2c] = 1;
+
 			for (int k = j + 1; k < n * m; k++) {
 				v3r = k / m;
 				v3c = k % m;
+
 				if (board[v3r][v3c]) continue;
 				board[v3r][v3c] = 1;
  				bfs();
-				re = max(re, count());
+
 				board[v3r][v3c] = 0;
 			}
 			board[v2r][v2c] = 0;
