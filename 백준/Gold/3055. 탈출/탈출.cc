@@ -90,7 +90,6 @@ int main() {
 			else if (board[i][j] == 'S') {
 				gq.push({ i, j });
 				gisit[i][j] = 1;
-				board[i][j] = '.';
 			}
 
 			// 돌
