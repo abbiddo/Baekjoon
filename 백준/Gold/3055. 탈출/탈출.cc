@@ -5,7 +5,6 @@ using namespace std;
 int n, m;
 char board[50][50];
 bool gisit[50][50];	// 고슴도치의 방문 체크
-bool wisit[50][50];	// 물의 방문 체크
 
 int dr[4] = { -1, 0, 1, 0 };
 int dc[4] = { 0, 1, 0, -1 };
@@ -33,12 +32,10 @@ void BFS() {
 				int c = wc + dc[j];
 				
 				if (r < 0 || c < 0 || r >= n || c >= m) continue;
-				if (wisit[r][c]) continue;
 				if (board[r][c] == '*') continue;
 				if (board[r][c] == 'D') continue;
 
 				wq.push({ r,c });
-				wisit[r][c] = 1;
 				board[r][c] = '*';
 			}
 		}
@@ -82,17 +79,13 @@ int main() {
 		for (int j = 0; j < m; j++) {
 			cin >> board[i][j];
 
-			if (board[i][j] == '*') {
-				wq.push({ i, j });
-				wisit[i][j] = 1;
-			}
-
+			if (board[i][j] == '*') wq.push({ i, j });
 			else if (board[i][j] == 'S') {
 				gq.push({ i, j });
 				gisit[i][j] = 1;
 			}
 
-			// 돌
+			// 돌도 물과 같이 갈 수 없는 곳이므로 물과 같은 문자로 표시
 			else if (board[i][j] == 'X') board[i][j] = '*';
 		}
 
