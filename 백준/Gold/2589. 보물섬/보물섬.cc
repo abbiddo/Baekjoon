@@ -49,8 +49,20 @@ int main() {
 		for (int j = 0; j < m; j++) cin >> arr[i][j];
 
 	for (int i = 0; i < n; i++)
-		for (int j = 0; j < m; j++) 
-			if (arr[i][j] == 'L') BFS(i, j);
+		for (int j = 0; j < m; j++)
+			if (arr[i][j] == 'L') {
+				int cnt = 0;
+				for (int k = 0; k < 4; k++) {
+					int rr = i + dr[k];
+					int cc = j + dc[k];
+
+					if (rr < 0 || cc < 0 || rr >= n || cc >= m) continue;
+					if (arr[rr][cc] == 'W') continue;
+
+					cnt++;
+				}
+				if (cnt == 1 || cnt == 2) BFS(i, j);
+			}
 
 	cout << dist;
 }
