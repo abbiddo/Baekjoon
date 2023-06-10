@@ -7,11 +7,11 @@ int score[16];
 int board[16][16];
 
 void kill(int num) {
-	score[num] = 0;
 	for (int i = 0; i < n; i++) 
 		if (score[i]) score[i] += board[num][i];
+	score[num] = 0;
 
-	int ma = -801, index;
+	int ma = 0, index;
 	for (int i = 0; i < n; i++) {
 		if (ma < score[i] && score[i]) {
 			ma = score[i];
@@ -58,7 +58,7 @@ int main() {
 	cin >> mafia;
 
 	if (n % 2) {
-		int ma = -801, index;
+		int ma = 0, index;
 		for (int i = 0; i < n; i++) {
 			if (ma < score[i]) {
 				ma = score[i];
