@@ -4,13 +4,12 @@ using namespace std;
 int n, cnt;
 int arr[100001][2];
 
-int LPR() {
+void LPR() {
 	int i = 1;
 	while (arr[i][1]) {
 		i = arr[i][1];
 		cnt++;
 	}
-	return i;
 }
 
 int main() {
@@ -24,8 +23,6 @@ int main() {
 		if (c != -1) arr[a][1] = c;
 	}
 
-	int idx = LPR();
-
-	if (arr[1][1] == 0) cout << (n - 1) * 2;
-	else cout << (n - 1) * 2 - cnt;
+	LPR();
+	cout << (n - 1) * 2 - cnt;
 }
