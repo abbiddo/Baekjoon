@@ -1,25 +1,29 @@
 #include <iostream>
+#include <vector>
 #include <queue>
+#include <algorithm>
 using namespace std;
 
 int n, m, res;
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+pair<int, int> arr[300000];
 priority_queue<int, vector<int>, greater< int>> work;
 
 int main() {
 	cin >> n >> m;
 	for (int i = 0; i < n; i++) {
 		int a, b;	cin >> a >> b;
-		pq.push({ a, a + b });
+		arr[i] = { a, a + b };
 	}
+	sort(arr, arr + n);
 
 	for (int i = 0; i < n; i++) {
-		while (work.size() && pq.top().first - work.top() > m) work.pop();
+		while (work.size() && arr[i].first - work.top() > m) work.pop();
+		
 		if (!work.size()) res++;
-		else if (pq.top().first >= work.top()) work.pop();
+		else if (arr[i].first >= work.top()) work.pop();
 		else res++;
-		work.push(pq.top().second);
-		pq.pop();
+		
+		work.push(arr[i].second);
 	}
 
 	cout << n - res;
