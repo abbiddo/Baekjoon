@@ -7,7 +7,7 @@ long long k(long long num) {
 	long long count = 0;
 	for (int i = 1; i <= n; i++) {
 		if (i > num) break;
-		else if (i * n <= num) count += n;
+		else if (i * n < num) count += n;
 		else count += (num / i);
 	}
 	return count;
