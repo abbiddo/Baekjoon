@@ -5,19 +5,17 @@ int r, c, n, sr, sc, res;
 bool board[40][40];
 bool sticker[10][10];
 
+bool check(int r, int c) {
+	for (int i = 0; i < sr; i++) 
+		for (int j = 0; j < sc; j++)
+			if (sticker[i][j] && board[i + r][j + c]) return false;
+	return true;
+}
+
 bool attach() {
 	for (int i = 0; i <= r - sr; i++) {
-		for (int j = 0; j <= c - sc; j++) {
-			bool check = false;
-			for (int k = 0; k < sr; k++) {
-				for (int l = 0; l < sc; l++)
-					if (sticker[k][l] && board[i + k][j + l]) {
-						check = true;
-						break;
-					}
-				if (check) break;
-			}
-			if (check) continue;
+		for (int j = 0; j <= c - sc; j++) {			
+			if (!check(i, j)) continue;
 
 			for (int k = 0; k < sr; k++)
 				for (int l = 0; l < sc; l++)
