@@ -16,9 +16,9 @@ int main() {
 
 	while (left < n) {
 		if (sum < s) {
-			if (right >= n) break;
 			right++;
 			sum += arr[right];
+			if (right >= n) break;
 		}
 		else {
 			if (left == right) {
