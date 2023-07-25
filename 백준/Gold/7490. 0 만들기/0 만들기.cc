@@ -13,7 +13,6 @@ void zero(int k, string s, int res) {
 		return;
 	}
 
-
 	int i, tmp = 0, ten = 1;
 	char op = ' ';
 	for (i = (k - 1) * 2 - 1; i > 0; i -= 2) {
