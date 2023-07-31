@@ -18,25 +18,17 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		int tmp = result[i] - arr[i];
 		if (tmp > 0) {
-			if (gap < 0) {
-				res += tmp;
-			}
+			if (gap < 0) res += tmp;
 			else {
 				if (gap >= tmp) gap = tmp;
-				else {
-					res += (tmp - gap);
-				}
+				else res += (tmp - gap);
 			}
 		}
 		else {
-			if (gap > 0) {
-				res -= tmp;
-			}
+			if (gap > 0) res -= tmp;
 			else {
 				if (gap <= tmp) gap = tmp;
-				else {
-					res += (gap - tmp);
-				}
+				else res += (gap - tmp);
 			}
 		}
 		gap = tmp;
