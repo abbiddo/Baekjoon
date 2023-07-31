@@ -20,29 +20,26 @@ int main() {
 		if (tmp > 0) {
 			if (gap < 0) {
 				res += tmp;
-				gap = tmp;
 			}
 			else {
 				if (gap >= tmp) gap = tmp;
 				else {
 					res += (tmp - gap);
-					gap = tmp;
 				}
 			}
 		}
 		else {
 			if (gap > 0) {
 				res -= tmp;
-				gap = tmp;
 			}
 			else {
 				if (gap <= tmp) gap = tmp;
 				else {
 					res += (gap - tmp);
-					gap = tmp;
 				}
 			}
 		}
+		gap = tmp;
 	}
 	cout << res;
 }
