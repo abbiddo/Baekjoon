@@ -4,8 +4,7 @@ using namespace std;
 
 int s;
 string st, bumb;
-deque<char> d;
-deque<char> re;
+deque<char> d, re;
 
 void de(){
 	while(!d.empty()){
