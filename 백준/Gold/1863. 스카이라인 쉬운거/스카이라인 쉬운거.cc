@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int n, res;
+int n, res, ma;
 bool arr[500001];
 
 int main() {
@@ -14,13 +14,15 @@ int main() {
 	int tmp = 0;
 	for (int i = 0; i < n; i++) {
 		int a, b;	cin >> a >> b;
+		ma = max(ma, b);
+
 		if (b > tmp) {
 			res++;
 			arr[b] = true;
 		}
 		else {
 			if (!arr[b] && b != 0) res++;
-			for (int j = b; j <= 500000; j++) arr[j] = false;
+			for (int j = b; j <= ma; j++) arr[j] = false;
 			arr[b] = true;
 		}
 		tmp = b;
