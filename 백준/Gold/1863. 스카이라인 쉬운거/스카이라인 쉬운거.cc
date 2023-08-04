@@ -24,6 +24,7 @@ int main() {
 			if (!arr[b] && b != 0) res++;
 			for (int j = b; j <= ma; j++) arr[j] = false;
 			arr[b] = true;
+			ma = b;
 		}
 		tmp = b;
 	}
