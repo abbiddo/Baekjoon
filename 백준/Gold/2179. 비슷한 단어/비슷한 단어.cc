@@ -41,11 +41,11 @@ int main() {
 			else if (j > i + 1 && ma > index) {
 				if (res.empty() || check) {
 					res = tmp;
-                    sort(res.begin(), res.end());
 					tmp.clear();
 					break;
 				}
 
+				sort(res.begin(), res.end());
 				sort(tmp.begin(), tmp.end());
 
 				if (arr[tmp[0]] == arr[tmp[1]]) {
