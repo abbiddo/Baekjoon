@@ -19,17 +19,11 @@ int main() {
 		int tmp = result[i] - arr[i];
 		if (tmp > 0) {
 			if (gap < 0) res += tmp;
-			else {
-				if (gap >= tmp) gap = tmp;
-				else res += (tmp - gap);
-			}
+			else if (gap < tmp) res += (tmp - gap);
 		}
 		else {
 			if (gap > 0) res -= tmp;
-			else {
-				if (gap <= tmp) gap = tmp;
-				else res += (gap - tmp);
-			}
+			else if (gap > tmp) res += (gap - tmp);
 		}
 		gap = tmp;
 	}
