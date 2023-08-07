@@ -53,7 +53,6 @@ public class Main {
         sort(res);
         System.out.println(res.size());
         for (int result : res){
-            if (result != 1) result--;
             System.out.print(result + " ");
         }
 
@@ -64,6 +63,7 @@ public class Main {
 
         Queue<Pos> q = new LinkedList<>();
         q.add(new Pos(r, c));
+        arr[r][c] = true;
 
         while(!q.isEmpty()){
             Pos cur = q.poll();
