@@ -4,31 +4,31 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
+
+    static long n;
+    static boolean flag = false;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        int n;
         n = Integer.parseInt(br.readLine());
 
-        int left = 1;
-        int right = 2;
-        int cnt = 0;
+        long bound = (n + 1) / 2;
+        
+        for (long i = 1; i <= bound; i++){
+            long tmp = i * i - n;
+            if (tmp <= 0){
+                continue;
+            }
 
-        while (left <= (n+1)/2 && right <= (n+1)/2 && left <= right){
-            int sum = (right * right) - (left * left);
-            if (sum == n){
-                System.out.println(right);
-                cnt++;
-                left++;
-            } else if (sum < n){
-                right++;
-            } else {
-                left++;
+            double tmpSqrt = Math.sqrt(tmp);
+            long tmpLong = (long)tmpSqrt;
+
+            if (tmpSqrt == tmpLong){
+                flag = true;
+                System.out.println(i);
             }
         }
 
-        if (cnt == 0){
-            System.out.println(-1);
-        }
+        if (!flag) System.out.println(-1);
     }
 }
