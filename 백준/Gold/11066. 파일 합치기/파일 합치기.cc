@@ -7,6 +7,10 @@ int arr[501];
 int dp[501][501];
 
 int main() {
+    
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);    cout.tie(NULL);
+    
 	cin >> t;
 	while (t--) {
 		cin >> n;
@@ -18,8 +22,9 @@ int main() {
 			cin >> dp[0][i];
 			arr[i] = arr[i - 1] + dp[0][i];
 		}
+		for (int i = 2; i <= n; i++) dp[2][i] = dp[0][i] + dp[0][i - 1];
 
-		for (int i = 2; i <= n; i++) {
+		for (int i = 3; i <= n; i++) {
 			for (int j = 1; j <= n; j++) {
 				if (j >= i) {
 					int tmp = arr[j] - arr[j - i];
