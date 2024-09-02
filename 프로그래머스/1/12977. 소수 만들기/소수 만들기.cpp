@@ -3,25 +3,31 @@
 #include <cmath>
 using namespace std;
 
-int solution(vector<int> nums) {
-    int answer = 0;
-    int n = nums.size();
-    
-    for (int i = 0; i < n; i++){
-        for (int j = i + 1; j < n; j++){
-            for (int k = j + 1; k < n; k++){
-                int sum = nums[i] + nums[j] + nums[k];
-                bool flag = true;
-                for(int tmp = 2; tmp <= sqrt(sum); tmp++){
-                    if (sum % tmp == 0){
-                        flag = false;
-                        break;
-                    }
-                }
-                if (flag) answer++;
-            }
+bool isPrime(int sum) {
+    if (sum < 2) return false;
+    for (int i = 2; i <= sqrt(sum); i++) {
+        if (sum % i == 0) {
+            return false;
         }
     }
+    return true;
+}
 
+void dfs(vector<int>& nums, int start, int count, int sum, int& answer) {
+    if (count == 3) {
+        if (isPrime(sum)) {
+            answer++;
+        }
+        return;
+    }
+
+    for (int i = start; i < nums.size(); i++) {
+        dfs(nums, i + 1, count + 1, sum + nums[i], answer);
+    }
+}
+
+int solution(vector<int> nums) {
+    int answer = 0;
+    dfs(nums, 0, 0, 0, answer);
     return answer;
 }
